@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  nginx:
+    restart: always
+    hostname: "nginx"
+    image: "nginx"
+    container_name: "nginx"
+    build:
+      context: .
+      dockerfile: ./Dockerfile-nginx
+    volumes:
+      - ./Volumes/nginx/static:/var/www/html
+      - ./Volumes/nginx/log:/var/log/nginx
+    ports:
+      - 80:80
+    links:
+      - app
+#    networks:
+#      - app_network
+    
+  app:
+    restart: always
+    hostname: "flask"
+    image: "flask"
+    container_name: "flask"
+    build:
+      context: .
+      dockerfile: ./Dockerfile-python
+    ports:
+      - 7000
+    volumes:
+      - ./Volumes/flask:/var/www/html
+#    networks:
+#      - app_network
+#networks:
+#  app_network:
+#    driver: host
+#    name: app_network
