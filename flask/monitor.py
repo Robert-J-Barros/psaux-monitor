@@ -1,19 +1,16 @@
 import os
 import paramiko
-import re
-import json
-import dotenv
-import urllib.request
+from dotenv import load_dotenv
 from flask import Flask, jsonify
-
 app = Flask(__name__.split('.')[0])
-
+load_dotenv()
 def OpenSSHConnection():
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     host = os.getenv('SSH_HOST')
     username = os.getenv('SSH_USERNAME')
     key_path = os.getenv('SSH_KEY_PATH')
+    print(host, username, key_path)
     ssh.connect(host, username=username, key_filename=key_path)
     return ssh
 
@@ -79,6 +76,8 @@ def health_check():
     else:
         return jsonify({"status": "ok", "message": "API está saudável"}), 200
 
+
+#OpenSSHConnection()
 if __name__ == '__main__':
     print("Before app.run()")
     app.run(port=7000, host='0.0.0.0', debug=True)

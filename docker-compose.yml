@@ -28,7 +28,7 @@ services:
       context: .
       dockerfile: ./Dockerfile-python
     ports:
-      - 7000
+      - 7000:7000
     volumes:
       - ./Volumes/flask:/var/www/html
 #    networks:
