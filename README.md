@@ -34,7 +34,8 @@ Este é um breve guia sobre como configurar e executar o seu projeto.
 
 ## Acesso ao Projeto
 
-Após a execução bem-sucedida do comando `docker-compose up`, o seu projeto estará acessível em [http://localhost:PORTA](http://localhost:PORTA).
+Após a execução bem-sucedida do comando `docker-compose up`, o seu projeto estará acessível em [http://localhost/](http://localhost/).
+[http://localhost/api/data](http://localhost/api/data).
 
 ## Parar e Remover Containers
 
